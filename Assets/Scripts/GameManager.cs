@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     public List<Vector2> currRecordingPositions = new List<Vector2>();
     public List<CloneController> playerClones = new List<CloneController>();
 
@@ -17,7 +19,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
@@ -25,7 +27,7 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Backspace))
         {
-            Reset();
+            Respawn();
         }
 
         timeElapsed += Time.deltaTime;
@@ -45,7 +47,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Reset()
+    public void Respawn()
     {
         GameObject clone = Instantiate(playerClonePF);
         clone.transform.position = playerSpawn.position;

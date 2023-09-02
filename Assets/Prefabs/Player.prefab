@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6720098248088978682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb41ad4adbc618c40a06a59c50990ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSprite: {fileID: 0}
+  playerSprite: {fileID: 6720098249297908418}
   moveForce: 9
   sprintForce: 15
   jumpForce: 16
@@ -136,7 +136,7 @@ MonoBehaviour:
   groundTolerance: 0.05
   groundMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 129
   recordedPositions: []
 --- !u!1 &6720098249297908416
 GameObject:
