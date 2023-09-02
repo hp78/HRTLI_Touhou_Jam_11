@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     float wallJumpCountdown = -1f;
 
     public List<Vector2> recordedPositions = new List<Vector2>();
-
+    float recordCountdown = 0f;
 
     Rigidbody2D rb2d;
 
@@ -48,7 +48,11 @@ public class PlayerController : MonoBehaviour
 
     void RecordMovement()
     {
-
+        recordCountdown -= Time.deltaTime;
+        if(recordCountdown <= 0)
+        {
+            recordedPositions.Add(transform.position);
+        }
     }
 
     void UpdateMovement()
@@ -114,13 +118,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            xMovement = -1f;
+            xMovement -= 1f;
             currFacing = -1f;
         }
 
         if(Input.GetKey(KeyCode.RightArrow))
         {
-            xMovement = 1f;
+            xMovement += 1f;
             currFacing = 1f;
         }
 
@@ -131,7 +135,6 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftShift))
         {
             rb2d.velocity = new Vector2(xMovement * sprintForce, rb2d.velocity.y);
-
         }
         else
         {
