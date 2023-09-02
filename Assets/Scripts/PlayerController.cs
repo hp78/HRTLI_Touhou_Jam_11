@@ -6,11 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     public Sprite playerSprite;
 
+
     public float moveForce = 9f;
     public float sprintForce = 15f;
+    float currFacing = 1;
 
-    public float jumpForce = 12f;
-    public float jumpTimeMax = 1f;
+    public float jumpForce = 16f;
+    public float jumpTimeMax = 0.5f;
     public float jumpTimeCountdown = 0f;
 
     public Transform feetPos;
@@ -20,8 +22,12 @@ public class PlayerController : MonoBehaviour
     bool stoppedJumping;
     public LayerMask groundMask;
 
-    public List<Vector2> recordedPositions = new List<Vector2>();
+    bool wallTouched = false;
+    float wallJumpDelay = 0.1f;
+    float wallJumpCountdown = -1f;
 
+    public List<Vector2> recordedPositions = new List<Vector2>();
+    float recordCountdown = 0f;
 
     Rigidbody2D rb2d;
 
@@ -30,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         jumpTimeCountdown = jumpTimeMax;
+        wallJumpCountdown = wallJumpDelay;
     }
 
     // Update is called once per frame
@@ -41,7 +48,11 @@ public class PlayerController : MonoBehaviour
 
     void RecordMovement()
     {
-
+        recordCountdown -= Time.deltaTime;
+        if(recordCountdown <= 0)
+        {
+            recordedPositions.Add(transform.position);
+        }
     }
 
     void UpdateMovement()
@@ -50,28 +61,47 @@ public class PlayerController : MonoBehaviour
         if (grounded)
             jumpTimeCountdown = jumpTimeMax;
 
-        float xMovement = 0f;
-        //float yMovement = rb2d.velocity.y;
+        if(wallJumpCountdown < 0)
+            wallTouched = (Physics2D.OverlapCircle(transform.position - new Vector3(0.25f, 0), groundTolerance, groundMask)
+                        || Physics2D.OverlapCircle(transform.position + new Vector3(0.25f, 0), groundTolerance, groundMask));
 
-        
+        if (wallTouched)
+        {
+            jumpTimeCountdown = jumpTimeMax;
+
+            rb2d.velocity = Vector2.zero;
+        }
+        else
+        {
+            wallJumpCountdown -= Time.deltaTime;
+
+            if (Input.GetKey(KeyCode.Space) && !stoppedJumping)
+            {
+                if (jumpTimeCountdown > 0)
+                {
+                    //rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+                    jumpTimeCountdown -= Time.deltaTime;
+                }
+            }
+        }
+            
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(grounded)
+            if(wallTouched)
+            {
+                rb2d.velocity = new Vector2(jumpForce * -currFacing, jumpForce);
+                wallJumpCountdown = wallJumpDelay;
+                stoppedJumping = false;
+                wallTouched = false;
+            } 
+            else if(grounded)
             {
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 stoppedJumping = false;
             }
         }
 
-        if(Input.GetKey(KeyCode.Space) && !stoppedJumping)
-        {
-            if(jumpTimeCountdown > 0)
-            {
-                //rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-                jumpTimeCountdown -= Time.deltaTime;
-            }
-        }
 
         if(Input.GetKeyUp(KeyCode.Space))
         {
@@ -83,20 +113,28 @@ public class PlayerController : MonoBehaviour
             stoppedJumping = true;
         }
 
-        if(Input.GetKey(KeyCode.LeftArrow))
+
+        float xMovement = 0f;
+
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            xMovement = -1f;
+            xMovement -= 1f;
+            currFacing = -1f;
         }
 
         if(Input.GetKey(KeyCode.RightArrow))
         {
-            xMovement = 1f;
+            xMovement += 1f;
+            currFacing = 1f;
         }
 
-        if(Input.GetKey(KeyCode.LeftShift))
+        if(wallJumpCountdown > 0)
+        {
+
+        }
+        else if (Input.GetKey(KeyCode.LeftShift))
         {
             rb2d.velocity = new Vector2(xMovement * sprintForce, rb2d.velocity.y);
-
         }
         else
         {
