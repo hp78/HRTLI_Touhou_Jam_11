@@ -127,6 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positions: []
+  bodySprite: {fileID: 6720098249297908418}
+  elapsedTime: 0
+  currPosIndex: 0
 --- !u!1 &6720098249297908416
 GameObject:
   m_ObjectHideFlags: 0

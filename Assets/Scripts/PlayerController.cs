@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Sprite playerSprite;
-
+    public SpriteRenderer playerSprite;
 
     public float moveForce = 9f;
     public float sprintForce = 15f;
@@ -90,6 +89,7 @@ public class PlayerController : MonoBehaviour
         {
             if(wallTouched)
             {
+                
                 rb2d.velocity = new Vector2(jumpForce * -currFacing, jumpForce);
                 wallJumpCountdown = wallJumpDelay;
                 stoppedJumping = false;
@@ -140,5 +140,15 @@ public class PlayerController : MonoBehaviour
         {
             rb2d.velocity = new Vector2(xMovement * moveForce, rb2d.velocity.y);
         }
+
+        if (xMovement > 0f)
+            playerSprite.flipX = true;
+        else if (xMovement < 0f)
+            playerSprite.flipX = false;
+    }
+
+    public void PlayerDie()
+    {
+        GameManager.instance.Respawn();
     }
 }
