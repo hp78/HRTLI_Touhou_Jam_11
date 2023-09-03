@@ -9,7 +9,7 @@ public class TrapTrigger : MonoBehaviour
     // Start is called before the first frame update
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if(collision.CompareTag("Player") || (collision.CompareTag("Clone")))
         {
             if (!triggered)
             {

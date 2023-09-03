@@ -41,18 +41,25 @@ public class SpikeTrap : TrapBase
     IEnumerator StartSpikeAnimation()
     {
         animator.SetTrigger("Out");
-        yield return new WaitForSeconds(spikeOutDuration+1f);
+        yield return new WaitForSeconds(spikeOutDuration+0.5f);
         if(!trapFired)
         {
             animator.SetTrigger("Reset");
+            animator.ResetTrigger("Out");
+            animator.ResetTrigger("In");
+
             yield return 0;
 
         }
         animator.SetTrigger("In");
-        yield return new WaitForSeconds(spikeInDuration+1f);
+        yield return new WaitForSeconds(spikeInDuration+0.5f);
         if (!trapFired)
         {
             animator.SetTrigger("Reset");
+            animator.ResetTrigger("Out");
+            animator.ResetTrigger("In");
+            yield return 0;
+
         }
         else
             StartCoroutine(StartSpikeAnimation());
