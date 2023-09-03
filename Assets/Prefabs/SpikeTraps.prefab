@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2365444203844227187}
   - component: {fileID: 2365444203844227186}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AnimationGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2365444204456229535}
   - component: {fileID: 2365444204456229534}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpikeTraps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
