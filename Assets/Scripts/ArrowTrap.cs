@@ -45,6 +45,13 @@ public class ArrowTrap : TrapBase
 
 
     }
+
+    public override void Reset()
+    {
+        triggerInterval = triggerDelay;
+        triggerStarted = false;
+        trapFired = false;
+    }
 }
 
 

@@ -42,9 +42,27 @@ public class SpikeTrap : TrapBase
     {
         animator.SetTrigger("Out");
         yield return new WaitForSeconds(spikeOutDuration+1f);
+        if(!trapFired)
+        {
+            animator.SetTrigger("Reset");
+            yield return 0;
+
+        }
         animator.SetTrigger("In");
         yield return new WaitForSeconds(spikeInDuration+1f);
-        StartCoroutine(StartSpikeAnimation());
+        if (!trapFired)
+        {
+            animator.SetTrigger("Reset");
+        }
+        else
+            StartCoroutine(StartSpikeAnimation());
         yield return 0;
+    }
+
+    public override void Reset()
+    {
+        triggerInterval = triggerDelay;
+        triggerStarted = false;
+        trapFired = false;
     }
 }

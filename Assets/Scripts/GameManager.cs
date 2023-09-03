@@ -65,5 +65,7 @@ public class GameManager : MonoBehaviour
         }
 
         playerTF.position = playerSpawn.position + new Vector3(0,1f);
+
+        TrapManager.instance.ResetTraps();
     }
 }

@@ -1000,11 +1000,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703473726260787607, guid: 8187ce494a283a34c93fb394668ebad9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.986117
+      value: 2.6394558
       objectReference: {fileID: 0}
     - target: {fileID: 1703473726260787607, guid: 8187ce494a283a34c93fb394668ebad9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.746912
+      value: -0.09147334
       objectReference: {fileID: 0}
     - target: {fileID: 1703473727282358796, guid: 8187ce494a283a34c93fb394668ebad9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1012,10 +1012,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703473727282358796, guid: 8187ce494a283a34c93fb394668ebad9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4085264
+      value: -0.09147334
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8187ce494a283a34c93fb394668ebad9, type: 3}
+--- !u!4 &442019649 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1703473726003332993, guid: 8187ce494a283a34c93fb394668ebad9, type: 3}
+  m_PrefabInstance: {fileID: 442019648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &446765685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,7 +1497,7 @@ MonoBehaviour:
   currRecordingPositions: []
   playerClones: []
   playerClonePF: {fileID: 6720098249263575350, guid: 5a741eb5ddd644f4591083b89a127504, type: 3}
-  playerTF: {fileID: 0}
+  playerTF: {fileID: 442019649}
   playerSpawn: {fileID: 1536238536}
 --- !u!4 &653911494
 Transform:
