@@ -7,8 +7,8 @@ public class CloneController : MonoBehaviour
     public List<Vector2> positions = new List<Vector2>();
 
     bool isAlive = true;
-    BoxCollider2D boxCol;
-    Rigidbody2D rb2d;
+    public BoxCollider2D boxCol;
+    public Rigidbody2D rb2d;
     public SpriteRenderer bodySprite;
 
     public float elapsedTime = 0f;
@@ -60,14 +60,22 @@ public class CloneController : MonoBehaviour
     public void Reset()
     {
         isAlive = true;
+        boxCol.enabled = true;
+        bodySprite.enabled = true;
         elapsedTime = 0f;
         currPosIndex = 0;
 
         transform.position = positions[0];
     }
 
-    public void CloneDie()
+    public void CloneDie(bool isErased)
     {
         isAlive = false;
+
+        if(isErased)
+        {
+            boxCol.enabled = false;
+            bodySprite.enabled = false;
+        }
     }
 }

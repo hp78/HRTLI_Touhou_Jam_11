@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public SpriteRenderer playerSprite;
+    public Animator animator;
 
     public float moveForce = 9f;
     public float sprintForce = 15f;
@@ -17,10 +18,12 @@ public class PlayerController : MonoBehaviour
     public Transform feetPos;
     public float groundTolerance = 0.1f;
 
+    bool leftGround = false;
     bool grounded;
     bool stoppedJumping;
     public LayerMask groundMask;
 
+    bool leftWall = false;
     bool wallTouched = false;
     float wallJumpDelay = 0.1f;
     float wallJumpCountdown = -1f;
@@ -57,22 +60,42 @@ public class PlayerController : MonoBehaviour
     void UpdateMovement()
     {
         grounded = Physics2D.OverlapCircle(feetPos.position, groundTolerance, groundMask);
+
         if (grounded)
+        {
+            if(leftGround)
+            {
+                leftGround = false;
+                animator.SetTrigger("TriggerLand");
+            }
             jumpTimeCountdown = jumpTimeMax;
+        }
+        else
+        {
+            leftGround = true;
+        }
 
         if(wallJumpCountdown < 0)
-            wallTouched = (Physics2D.OverlapCircle(transform.position - new Vector3(0.25f, 0), groundTolerance, groundMask)
-                        || Physics2D.OverlapCircle(transform.position + new Vector3(0.25f, 0), groundTolerance, groundMask));
+        {
+            wallTouched = (Physics2D.OverlapCircle(transform.position - new Vector3(0.15f, 0), groundTolerance, groundMask)
+                        || Physics2D.OverlapCircle(transform.position + new Vector3(0.15f, 0), groundTolerance, groundMask));
+        }
 
         if (wallTouched)
         {
-            jumpTimeCountdown = jumpTimeMax;
+            if(leftWall)
+            {
+                leftWall = false;
+                animator.SetTrigger("TriggerWall");
+            }
 
+            jumpTimeCountdown = jumpTimeMax;
             rb2d.velocity = Vector2.zero;
         }
         else
         {
             wallJumpCountdown -= Time.deltaTime;
+            leftWall = true;
 
             if (Input.GetKey(KeyCode.Space) && !stoppedJumping)
             {
@@ -89,7 +112,7 @@ public class PlayerController : MonoBehaviour
         {
             if(wallTouched)
             {
-                
+                animator.SetTrigger("TriggerJump");
                 rb2d.velocity = new Vector2(jumpForce * -currFacing, jumpForce);
                 wallJumpCountdown = wallJumpDelay;
                 stoppedJumping = false;
@@ -97,6 +120,7 @@ public class PlayerController : MonoBehaviour
             } 
             else if(grounded)
             {
+                animator.SetTrigger("TriggerJump");
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 stoppedJumping = false;
             }
