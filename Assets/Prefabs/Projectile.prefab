@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3236859790799628480}
   - component: {fileID: 3236859790799628494}
   - component: {fileID: 3236859790799628493}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile
   m_TagString: Traps
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18d8ea7f4d0a15344b919ac23c88e9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
   lifeTime: 2
 --- !u!58 &3236859790799628494
 CircleCollider2D:
@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3236859792702355050}
   - component: {fileID: 3236859792702355049}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
