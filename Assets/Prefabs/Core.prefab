@@ -82,6 +82,7 @@ MonoBehaviour:
   currRecordingPositions: []
   playerClones: []
   playerClonePF: {fileID: 6720098249263575350, guid: 5a741eb5ddd644f4591083b89a127504, type: 3}
+  playerControl: {fileID: 1703473726003332996}
   playerTF: {fileID: 1703473726003332993}
   playerSpawn: {fileID: 0}
 --- !u!1 &1703473726260787563
@@ -111,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703473726260787563}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.0270114, y: 0.818527, z: -9.895587}
+  m_LocalPosition: {x: 2.0270119, y: -0.09147334, z: -9.895587}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -128,7 +129,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -316,7 +317,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703473727282358798}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.0270114, y: 1.4085271, z: -9.895587}
+  m_LocalPosition: {x: 2.0270119, y: -0.09147334, z: -9.895587}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -424,3 +425,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6720098249263575346, guid: 4745a1cbc6076fa4589752394a792fc0, type: 3}
   m_PrefabInstance: {fileID: 5395701120502314675}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1703473726003332996 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6720098249263575351, guid: 4745a1cbc6076fa4589752394a792fc0, type: 3}
+  m_PrefabInstance: {fileID: 5395701120502314675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb41ad4adbc618c40a06a59c50990ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public List<CloneController> playerClones = new List<CloneController>();
 
     public GameObject playerClonePF;
+    public PlayerController playerControl;
     public Transform playerTF;
     public Transform playerSpawn;
 
@@ -25,26 +26,25 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             Respawn();
         }
 
         timeElapsed += Time.deltaTime;
 
-
-        RecordMovement();
+        recordCountdown -= Time.deltaTime;
+        if (recordCountdown <= 0 && playerControl.isAlive)
+        {
+            RecordMovement();
+        }
     }
 
 
-    void RecordMovement()
+    public void RecordMovement()
     {
-        recordCountdown -= Time.deltaTime;
-        if (recordCountdown <= 0)
-        {
-            recordCountdown = 0.1f;
-            currRecordingPositions.Add(playerTF.position);
-        }
+        recordCountdown = 0.1f;
+        currRecordingPositions.Add(playerTF.position);
     }
 
     public void Respawn()

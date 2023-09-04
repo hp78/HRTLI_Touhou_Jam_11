@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool isAlive = true;
+
     public SpriteRenderer playerSprite;
     public Animator animator;
+    public Sprite normalSprite;
+    public Sprite wallSprite;
+    public Sprite deadSprite;
 
+    [Space(5)]
     public float moveForce = 9f;
     public float sprintForce = 15f;
     float currFacing = 1;
 
+    [Space(5)]
     public float jumpForce = 16f;
     public float jumpTimeMax = 0.5f;
     public float jumpTimeCountdown = 0f;
 
+    [Space(5)]
     public Transform feetPos;
     public float groundTolerance = 0.1f;
 
+    [Space(5)]
     bool leftGround = false;
     bool grounded;
     bool stoppedJumping;
@@ -44,8 +53,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive) return;
+
         UpdateMovement();
-        RecordMovement();
+        //RecordMovement();
     }
 
     void RecordMovement()
@@ -75,10 +86,12 @@ public class PlayerController : MonoBehaviour
             leftGround = true;
         }
 
-        if(wallJumpCountdown < 0)
+        if (wallJumpCountdown < 0)
         {
             wallTouched = (Physics2D.OverlapCircle(transform.position - new Vector3(0.15f, 0), groundTolerance, groundMask)
                         || Physics2D.OverlapCircle(transform.position + new Vector3(0.15f, 0), groundTolerance, groundMask));
+
+            playerSprite.sprite = wallSprite;
         }
 
         if (wallTouched)
@@ -96,6 +109,7 @@ public class PlayerController : MonoBehaviour
         {
             wallJumpCountdown -= Time.deltaTime;
             leftWall = true;
+            playerSprite.sprite = normalSprite;
 
             if (Input.GetKey(KeyCode.Space) && !stoppedJumping)
             {
@@ -170,9 +184,25 @@ public class PlayerController : MonoBehaviour
         else if (xMovement < 0f)
             playerSprite.flipX = false;
     }
-
+    
     public void PlayerDie()
     {
+        GameManager.instance.RecordMovement();
+        //recordedPositions.Add(transform.position);
+        isAlive = false;
+        rb2d.velocity = Vector2.zero;
+        //recordedPositions.Add(transform.position + new Vector3(rb2d.velocity.x, rb2d.velocity.y) * Time.fixedDeltaTime);
+        
+
+        playerSprite.sprite = deadSprite;
+        StartCoroutine(Respawn());
+    }
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        isAlive = true;
         GameManager.instance.Respawn();
     }
 }
