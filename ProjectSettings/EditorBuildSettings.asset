@@ -6,6 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/hpTest.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/MainMenu.unity
+    guid: c7edc8cde65b4b94195723dcc355a817
+  - enabled: 1
+    path: Assets/Scenes/Stage1.unity
+    guid: 64050be1cc6c8054a8266ef13ae57997
+  - enabled: 1
+    path: Assets/Scenes/Stage1-2.unity
+    guid: 910bcbee14fa50d428b400a8f4e25c17
+  - enabled: 1
+    path: Assets/Scenes/Stage2.unity
+    guid: 40873533025b5e040ad445f923e3c230
+  - enabled: 1
+    path: Assets/Scenes/Stage3.unity
+    guid: 7c6a1a0239d28a14190fb01c4a4d2622
+  - enabled: 1
+    path: Assets/Scenes/Stage4.unity
+    guid: aa388f5b502c2864bb7741bc1a98c808
+  - enabled: 1
+    path: Assets/Scenes/Stage5.unity
+    guid: 93a636b0a6917a74eaa87a7b6aef9d3b
+  - enabled: 1
+    path: Assets/Scenes/Stage6.unity
+    guid: eaff6ed569e27ea46aef1fa75d39c1f3
   m_configObjects: {}

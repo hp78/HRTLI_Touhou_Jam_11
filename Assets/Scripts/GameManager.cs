@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Space(5)]
+    public string nextSceneName;
+    public Animator canvasAnimator;
+
+    [Space(5)]
     public List<Vector2> currRecordingPositions = new List<Vector2>();
     public List<CloneController> playerClones = new List<CloneController>();
 
+    [Space(5)]
     public GameObject playerClonePF;
     public PlayerController playerControl;
     public Transform playerTF;
     public Transform playerSpawn;
+
 
     float recordCountdown = 0f;
     float timeElapsed = 0f;
@@ -67,5 +75,26 @@ public class GameManager : MonoBehaviour
         playerTF.position = playerSpawn.position + new Vector3(0,1f);
 
         TrapManager.instance.ResetTraps();
+    }
+
+    public void GoToMainMenu()
+    {
+        StartCoroutine(LoadNextScene("MainMenu"));
+    }
+
+    public void GotToNextScene()
+    {
+        StartCoroutine(LoadNextScene(nextSceneName));
+    }
+    IEnumerator LoadNextScene(string sceneName)
+    {
+        canvasAnimator.Play("StageExit");
+        yield return new WaitForSeconds(0.75f);
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void SceneEntry()
+    {
+
     }
 }
