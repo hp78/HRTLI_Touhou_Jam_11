@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public Transform playerTF;
     public Transform playerSpawn;
 
+    [Space(5)]
+    public GameObject pauseMenu;
 
     float recordCountdown = 0f;
     float timeElapsed = 0f;
@@ -56,6 +58,21 @@ public class GameManager : MonoBehaviour
         string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
 
         elapsedTimeTxt.text = niceTime;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(Time.timeScale == 0f)
+            {
+                Time.timeScale = 1f;
+                pauseMenu.SetActive(false);
+            }
+            else
+            {
+                Time.timeScale = 0f;
+                pauseMenu.SetActive(true);
+            }
+
+        }
 
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
@@ -104,8 +121,15 @@ public class GameManager : MonoBehaviour
         TrapManager.instance.ResetTraps();
     }
 
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+    }
+
     public void GoToMainMenu()
     {
+        Time.timeScale = 1f;
         StartCoroutine(LoadNextScene("MainMenu"));
     }
 
@@ -118,6 +142,13 @@ public class GameManager : MonoBehaviour
         canvasAnimator.Play("StageExit");
         yield return new WaitForSeconds(0.75f);
         SceneManager.LoadScene(sceneName);
+    }
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 
     public void SceneEntry()
