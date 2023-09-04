@@ -460,6 +460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1703473726125794513}
   - component: {fileID: 1703473726125794514}
+  - component: {fileID: 573996991}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -494,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805cbe1a2723be54f9f7c1656dffb145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: 
+  nextSceneName: Stage6
   canvasAnimator: {fileID: 800164511315665647}
   elapsedTimeSO: {fileID: 11400000, guid: 7afbeb3e140d2de489e4d5678cb1e67f, type: 2}
   totalDeathsSO: {fileID: 11400000, guid: fb9a156d212a0334286467be9056b4fe, type: 2}
@@ -507,6 +508,27 @@ MonoBehaviour:
   playerTF: {fileID: 1703473726003332993}
   playerSpawn: {fileID: 0}
   pauseMenu: {fileID: 3697188955077999085}
+--- !u!114 &573996991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703473726125794515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849e2d2cf67d21b448a18fa456af5594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listOfTrigger:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1703473726260787563
 GameObject:
   m_ObjectHideFlags: 0
