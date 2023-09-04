@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Traps
   - Clone
+  - Projectile
   layers:
   - Default
   - TransparentFX

@@ -22,5 +22,11 @@ public class TrapManager : MonoBehaviour
         {
             tt.ResetTraps();
         }
+
+        var temp = GameObject.FindGameObjectsWithTag("Projectile");
+        foreach (GameObject go in temp)
+        {
+            go.SetActive(false);
+        }
     }
 }
