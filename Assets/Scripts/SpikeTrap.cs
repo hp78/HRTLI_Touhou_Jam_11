@@ -52,6 +52,8 @@ public class SpikeTrap : TrapBase
     public override void Reset()
     {
         triggerInterval = triggerDelay;
+        animator.Play("Blank");
+
         triggerStarted = false;
         trapFired = false;
     }
