@@ -187,6 +187,9 @@ public class PlayerController : MonoBehaviour
     
     public void PlayerDie()
     {
+        if (!isAlive)
+            return;
+
         GameManager.instance.RecordMovement();
         //recordedPositions.Add(transform.position);
         isAlive = false;
